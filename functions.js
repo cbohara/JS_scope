@@ -6,7 +6,9 @@
 // var testSheep = AnimalTestUser('CottonBall');
 // console.log(testSheep); //{ username: 'CottonBall' }
 // ```
-
+var AnimalTestUser = function(username) {
+	return object.username;
+};
 
 
 // 2. In your `AnimalTestUser` function,
@@ -21,7 +23,17 @@
 	// var testSheep = AnimalTestUser('CottonBall', {'loves dancing': true}, [1,2,3] );
 	// console.log(testSheep); //{ username: 'CottonBall', otherArgs: [ {'loves dancing': true}, [1,2,3] ] }
 	// ```
-
+var AnimalTestUser = function(username) {
+    var object = {};
+    var argumentsPassed = arguments.length;
+	if (argumentsPassed > 0) {
+		object.otherArgs = [];
+   		for (var i = 1; i < arguments.length; i++) {
+    		object.otherArgs.push(arguments[i]);
+			//console.log(("arguments", arguments[i]))
+		}
+	}
+};
 
 
 // 3. Write a constructor function, `AnimalCreator`
@@ -43,6 +55,16 @@
 	//       //  friends: []
 	//       // }
 	// ```
+var AnimalCreator = function(username, species, tagline, noises) {
+	var animal = {};
+		animal.username = username;
+		animal.species = species;
+		animal.tagline = tagline;
+	    animal.noises = noises;
+		animal.friends = [];
+	return animal;
+};
+
 
 
 
