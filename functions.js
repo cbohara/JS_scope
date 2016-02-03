@@ -1,14 +1,17 @@
 // 1. Write a function, `AnimalTestUser`,
 	//	that has one string parameter, `username`.
 	//	It returns an object with a username property.
+var AnimalTestUser = function(username) {
+	var object = {};
+    object.username = username;
+	return object;
+};
 
 // ```javascript
 // var testSheep = AnimalTestUser('CottonBall');
 // console.log(testSheep); //{ username: 'CottonBall' }
 // ```
-var AnimalTestUser = function(username) {
-	return object.username;
-};
+
 
 
 // 2. In your `AnimalTestUser` function,
@@ -19,23 +22,29 @@ var AnimalTestUser = function(username) {
 	//	Note: the `arguments` keyword is not a true array.
 	//		it is an array-like object.
 
+var AnimalTestUser = function(username) {
+	//object literal
+    var object = {};
+    //create property in object
+    object.username = username;
+    //save arguments length into variable
+    var argumentsPassed = arguments.length;
+    //if there is more than argument, create 'otherArgs' property that is an array of the remaining arguments
+	if (argumentsPassed > 0) {
+		//create array to hold remaining arguments
+		object.otherArgs = [];
+		//loop through array and push remaining arguments into 'otherArgs' array
+   		for (var i = 1; i < arguments.length; i++) {
+    		object.otherArgs.push(arguments[i]);
+		}
+	}
+	return object;
+};
+
 	// ```javascript
 	// var testSheep = AnimalTestUser('CottonBall', {'loves dancing': true}, [1,2,3] );
 	// console.log(testSheep); //{ username: 'CottonBall', otherArgs: [ {'loves dancing': true}, [1,2,3] ] }
-	// ```
-var AnimalTestUser = function(username) {
-    var object = {};
-    var argumentsPassed = arguments.length;
-	if (argumentsPassed > 0) {
-		object.otherArgs = [];
-   		for (var i = 1; i < arguments.length; i++) {
-    		object.otherArgs.push(arguments[i]);
-			//console.log(("arguments", arguments[i]))
-		}
-	}
-};
-
-
+	// 
 // 3. Write a constructor function, `AnimalCreator`
 	//		that returns a single animal object.
 	//	The constructor function has 4 parameters:
@@ -45,16 +54,7 @@ var AnimalTestUser = function(username) {
 	//	The values should all be strings
 	//		except `noises` and `friends`, which are arrays.
 
-	// ```javascript
-	// var sheep = AnimalCreator('Cloud', 'sheep', 'You can count on me!', ['baahhh', 'arrgg', 'chewchewchew']);
-	// console.log(sheep);
-	//       // { username: 'Cloud',
-	//       //  species: 'sheep',
-	//       //  tagline: 'You can count on me!',
-	//       //  noises: ['baahhh', 'arrgg', 'chewchewchew'],
-	//       //  friends: []
-	//       // }
-	// ```
+
 var AnimalCreator = function(username, species, tagline, noises) {
 	var animal = {};
 		animal.username = username;
@@ -66,15 +66,33 @@ var AnimalCreator = function(username, species, tagline, noises) {
 };
 
 
+var sheep = AnimalCreator('Cloud', 'sheep', 'You can count on me!', ['baahhh', 'arrgg', 'chewchewchew']);
 
+var cow = AnimalCreator('Moo', 'cow', 'I make milk!', ['moo', 'moo', 'moo']);
+
+var llama = AnimalCreator('Zeny', 'llama', 'I got a hump!', ['hump','hump','hump']);
+	// console.log(sheep);
+	//       // { username: 'Cloud',
+	//       //  species: 'sheep',
+	//       //  tagline: 'You can count on me!',
+	//       //  noises: ['baahhh', 'arrgg', 'chewchewchew'],
+	//       //  friends: []
+	//       // }
+	// ```
 
 // 4. Write a function, `addFriend`
 	//	that takes an animal object
 	//		(like the one returned from the `AnimalCreator` function) and
 	//	adds another animal object as a friend.
 
+var addFriend = function(animal1,animal2){
+	animal1.friends.push(animal2);
+	console.log('animal1',animal1)
+	return animal1;
+};
+
 	// ```javascript
-	//   addFriend(sheep, cow);
+addFriend(sheep, cow);
 	//   console.log(sheep);
 	//         // { username: 'Cloud',
 	//         //  species: 'sheep',
@@ -82,7 +100,8 @@ var AnimalCreator = function(username, species, tagline, noises) {
 	//         //  noises: ['baahhh', 'arrgg', 'chewchewchew'],
 	//         //  friends: [{username: 'Moo', species: 'cow'...}]
 	//         // }
-	//   addFriend(sheep, llama);
+var threeAnimals = addFriend(sheep, llama);
+console.log('all animals',threeAnimals);
 	//   console.log(sheep);
 	//         // { username: 'Cloud',
 	//         //  species: 'sheep',
