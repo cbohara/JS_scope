@@ -219,7 +219,7 @@ addMatchesArray(myFarm);
 
 var giveMatches = function(myFarm){
 	for(var i = 0; i < myFarm.length; i++){
-		myFarm[i].matches.push(myFarm[i].friends);
+		myFarm[i].matches = myFarm[i].friends.slice(0,1);
 	}
 	return myFarm;
 };
@@ -236,5 +236,5 @@ giveMatches(myFarm);
 	//         //  matches: ['Zeny']
 	//         // }
 	// ```
-
+g
 
