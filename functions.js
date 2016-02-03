@@ -97,8 +97,8 @@ var addFriend = function(animal1,animal2){
 };
 
 	// ```javascript
-addFriend(sheep, cow);
-addFriend(sheep, llama);
+// addFriend(sheep, cow);
+// addFriend(sheep, llama);
 	//   console.log(sheep);
 	//         // { username: 'Cloud',
 	//         //  species: 'sheep',
@@ -186,24 +186,7 @@ var addFriend = function(animal1,animal2){
 	//		that is an empty array.
 	//	Hint: you will need a loop.
 
-var myFarm = [];
-myFarm[0] = sheep;
-myFarm[1] = cow;
-myFarm[2] = llama;
-
-var AnimalCreator = function(username, species, tagline, noises) {
-	var animal = {};
-		animal.username = username;
-		animal.species = species;
-		animal.tagline = tagline;
-	    animal.noises = noises;
-		animal.friends = [];
-		// animal.matches = [];
-	return animal;
-};
-
 var addMatchesArray = function(myFarm){
-	//add a new property to each animal object called 'matches' that is an empty array
 	for(var i = 0; i < myFarm.length; i++){
 		myFarm[i].matches = [];
 	}
@@ -211,7 +194,6 @@ var addMatchesArray = function(myFarm){
 };
 
 addMatchesArray(myFarm);
-
 
 	// ```javascript
 	// addMatchesArray(myFarm);
@@ -239,11 +221,10 @@ var giveMatches = function(myFarm){
 	for(var i = 0; i < myFarm.length; i++){
 		myFarm[i].matches.push(myFarm[i].friends);
 	}
-	console.log('myFarm',myFarm);
 	return myFarm;
 };
 
-// console.log('giveMatches',giveMatches(myFarm));
+giveMatches(myFarm);
 
 	// ```javascript
 	// giveMatches(myFarm);
