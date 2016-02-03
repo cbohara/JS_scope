@@ -286,8 +286,8 @@ bbqMeatCooker();
 var iSaver = function(index, val) {
   return function() {
     console.log('inside of our closure scope, i is still:',index,'val is:',val);
-  }
-};
+  };
+}
 
 var testArr = [1,2,3,4];
 
@@ -302,13 +302,14 @@ console.log('at this point in our code, i is:', i);
 // at this point in our code, i is: 4
 
 // 19. What do you expect to get when we invoke func1?
-// func1();
+func1();
 // inside of our closure scope, i is still: 1 val is: 2
 
 // what iSaver returns to us is a function.
   //  Which is really just a fancy object.
   // We can push objects into arrays, and then access their values,
   //  doing something like arr[i].propName.
+
   // We can also push fancy function objects into arrays, and then invoke them,
   //  doing something like arr[i]().
 
@@ -328,44 +329,44 @@ console.log('at this point in our code, i is:', i);
   // Now arr[i] has evaluated to what that thing is in our array.
   //  In this case, it is a function.
   // We can then invoke that function with the open and closed parens ().
+
 // Let's put that pattern to use!
 
 // 20. Create an empty array called closureFuncs.
 // 21. Create a new for loop.
-// 22. Let's create a new iSaver function for every even i in the 
-// array, and push that function into closureFuncs.
-// 23. Then, once you're done with the entire for loop,
-// log what the value of i is outside the for loop.
-// 24. And then go through and invoke each function in our 
-// closureFuncs array.
-// Remember, when in doubt, console.log things with labels!
+// 22. Let's create a new iSaver function for every even i in the array,
+  // and push that function into closureFuncs.
 
 var closureFuncs = [];
 
-var iSaver = function(index, val) {
+var iSaverEven = function(evenIndex, value) {
   return function() {
-    console.log('inside of our closure scope, i is still:',index,'val is:',val);
-    closureFuncs.push();
-  }
-};
+    console.log('inside of our closure scope, i is still:',evenIndex,'val is:',value);
+    closureFuncs[i].iSaverEven;
+  };
+}
 
 var testArr = [1,2,3,4];
 
-for (var i = 0; i < testArr.length; i ++) {
-  if(testArr[i] % 2 === 0){
-    var funcEven = iSaver(i, testArr[i]);
+for (var i = 0; i < testArr.length; i++) {
+  if(i % 2 === 0) {
+    var even = iSaverEven(i, testArr[i]);
   }
 }
 
+even();
+console.log('closureFuncs',closureFuncs);
 
+// 23. Then, once you're done with the entire for loop,
+  // log what the value of i is outside the for loop.
 
-// 18. What is i at this point in our code?
-console.log('at this point in our code, i is:', i); 
+// 24. And then go through and invoke each function in our closureFuncs array.
 
-console.log('funcEven',funcEven());
+// Remember, when in doubt, console.log things with labels!
 
-console.log('closureFuncs array',closureFuncs);
-
+// What you should see logged out is
+  // 'inside of our closure scope, i is still: 0, val is: 1'
+  // 'inside of our closure scope, i is still: 2, val is: 3'
 
 
 // What you should see logged out is
