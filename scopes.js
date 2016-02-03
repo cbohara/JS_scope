@@ -25,6 +25,7 @@
 
 var restaurantName = 'Telegraph Cook';
 var address = '1600 Shattuck Ave';
+// console.log('global address',address);
 
 // Next we'll create the vegetarianCorner.
   // We want to hold some variables here that are only accessible
@@ -41,6 +42,7 @@ var vegetarianCorner = function() {
   // And a favorite dish:
   var favoriteDish = 'saag paneer';
 
+
 // To warm up,
 // 1. what do you expect chef to be if we console log it right here?
 
@@ -55,18 +57,21 @@ var vegetarianCorner = function() {
     //  so it console.logs that string."
 
 // 2. And what would we expect address to be right here?
-
+// console.log('veggie chef',chef);
+// console.log('address',address);
 };
 vegetarianCorner();
 
 // 3. Now that we're back in the global scope
   //  `(we're no longer inside the function body), what is chef?
-
+// console.log('chef',chef);
+// error because chef is a local variable within the vegetarianCorner function and does not exist outside of that function
   // Explain why to your pair.
 
 // 4. What is address in this scope?
-
+// console.log('address',address);
   // Why?
+  // global variable
 
 // Great!
 // Now let's create the rival bbqMeatCooker section of our kitchen.
@@ -89,6 +94,9 @@ var bbqMeatCooker = function() {
     //  and the one below it:
     //  http://slides.com/climbsrocks/debugging#/7/3
 
+    // console.log('bbq Chef',chef);
+    // console.log('bbq fav dish',favoriteDish);
+
   // Each function body has it's own scope.
     // Variables created in there using the var keyword
     //  will ONLY exist within that scope.
@@ -100,6 +108,7 @@ var bbqMeatCooker = function() {
     //  with everything else, so we had to move it out back.
 
   var address = 'shed in the back yard at 1600 Shattuck Ave';
+  // console.log('shed',address);
 
   // 6. What happens if we console.log address here?
 
@@ -111,7 +120,7 @@ var bbqMeatCooker = function() {
     //  shed to house our bbqMeatCooker in. So we move the address again:
 
   address = '1610 Shattuck Ave';
-
+  // console.log('1610',address);
   // 7. What is address here?
     //  What is the process by which it figures that out?
     //  Talk through this with your partner
@@ -120,7 +129,7 @@ var bbqMeatCooker = function() {
 bbqMeatCooker();
 
 // 8. Now that we're back in the global scope, what is address here?
-
+// console.log('global address',address);
 // 9. Have we changed it at all based on what we did inside bbqMeatCooker?
   // Explain why or why not to your pair.
   // Then, console.log address here (with a label!),
@@ -134,7 +143,8 @@ var pastryConcoctions = function() {
   address = '1517 Shattuck Ave';
 
   // 10. What are the values of chef and address here?
-
+  // console.log('pastry chef',chef);
+  // console.log('pastry address',address);
 };
 pastryConcoctions();
 
@@ -151,7 +161,19 @@ vegetarianCorner = function() {
 
   // 13. What is the value of address here?
     // Why?
-
+    // console.log('global?',address);
+    /*
+    We did not declare the address as a variable in the
+     pastryConcoctions function, so the address in the
+      pastryConcoctions function('1517 Shattuck Ave') 
+      overwrote the global variable('1600 Shattuck Ave'). 
+      When invoking address in the vegetarianCorner 
+      funcdtion, the address is the new overwritten address
+       due to poor coding in the pastryConcoctions 
+       function. We should have declared the address as a 
+       variable in the pastryConcoctions function to avoid
+       overwritting the global variable.
+    */
 };
 vegetarianCorner();
 
@@ -163,17 +185,24 @@ bbqMeatCooker = function() {
 
   // 14. What is the value of address here?
     // Why?
-
+    // console.log('1610',address);
+    //the last execution of the address variable contains 
+    //the value '1610 Shattuck Ave'
   // 15. What is the value of chef here?
     // Why?
-
+    // console.log('bbq chef',chef);
+    // the BBQ chef Raka is declared as a variable within
+    // the bbqMeatCooker function
+  
   window.chef = 'Raka rules!';
 
   // 16. What is the window object?
+  // The window object represents an open window in the 
+  // browser
     //  What happens when we set properties on it?
 
   // 17. What is the value of chef right here after that update?
-
+  // console.log('window',window);
 };
 bbqMeatCooker();
 
@@ -190,8 +219,8 @@ bbqMeatCooker();
     //  If two variables with the same name exist in local and global scope,
       // the function will first find the value in the lcoal scope, and
       // never have to reach outside to the global scope.
-  // 6. The window object is synonymous with global scope.
-    //  Properties set on the window object are available in the global scope.
+  // 6. The window object is synonymous with global scope!
+    //  Properties set on the window object are available in the global scope!
 
 // Whew, that's a lot of learning so far!
 
@@ -257,8 +286,8 @@ bbqMeatCooker();
 var iSaver = function(index, val) {
   return function() {
     console.log('inside of our closure scope, i is still:',index,'val is:',val);
-  };
-}
+  }
+};
 
 var testArr = [1,2,3,4];
 
@@ -269,10 +298,12 @@ for (var i = 0; i < testArr.length; i++) {
 }
 
 // 18. What is i at this point in our code?
-// console.log('at this point in our code, i is:', i);
+console.log('at this point in our code, i is:', i); 
+// at this point in our code, i is: 4
 
 // 19. What do you expect to get when we invoke func1?
 // func1();
+// inside of our closure scope, i is still: 1 val is: 2
 
 // what iSaver returns to us is a function.
   //  Which is really just a fancy object.
@@ -297,22 +328,45 @@ for (var i = 0; i < testArr.length; i++) {
   // Now arr[i] has evaluated to what that thing is in our array.
   //  In this case, it is a function.
   // We can then invoke that function with the open and closed parens ().
-
 // Let's put that pattern to use!
 
 // 20. Create an empty array called closureFuncs.
-
 // 21. Create a new for loop.
-
-// 22. Let's create a new iSaver function for every even i in the array,
-  // and push that function into closureFuncs.
-
+// 22. Let's create a new iSaver function for every even i in the 
+// array, and push that function into closureFuncs.
 // 23. Then, once you're done with the entire for loop,
-  // log what the value of i is outside the for loop.
-
-// 24. And then go through and invoke each function in our closureFuncs array.
-
+// log what the value of i is outside the for loop.
+// 24. And then go through and invoke each function in our 
+// closureFuncs array.
 // Remember, when in doubt, console.log things with labels!
+
+var closureFuncs = [];
+
+var iSaver = function(index, val) {
+  return function() {
+    console.log('inside of our closure scope, i is still:',index,'val is:',val);
+    closureFuncs.push();
+  }
+};
+
+var testArr = [1,2,3,4];
+
+for (var i = 0; i < testArr.length; i ++) {
+  if(testArr[i] % 2 === 0){
+    var funcEven = iSaver(i, testArr[i]);
+  }
+}
+
+
+
+// 18. What is i at this point in our code?
+console.log('at this point in our code, i is:', i); 
+
+console.log('funcEven',funcEven());
+
+console.log('closureFuncs array',closureFuncs);
+
+
 
 // What you should see logged out is
   // 'inside of our closure scope, i is still: 0, val is: 1'
