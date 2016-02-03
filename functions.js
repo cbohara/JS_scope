@@ -41,7 +41,7 @@ var AnimalTestUser = function(username) {
 	return object;
 };
 
-	// ```javascript
+
 	// var testSheep = AnimalTestUser('CottonBall', {'loves dancing': true}, [1,2,3] );
 	// console.log(testSheep); //{ username: 'CottonBall', otherArgs: [ {'loves dancing': true}, [1,2,3] ] }
 	// 
@@ -65,12 +65,18 @@ var AnimalCreator = function(username, species, tagline, noises) {
 	return animal;
 };
 
-
 var sheep = AnimalCreator('Cloud', 'sheep', 'You can count on me!', ['baahhh', 'arrgg', 'chewchewchew']);
 
 var cow = AnimalCreator('Moo', 'cow', 'I make milk!', ['moo', 'moo', 'moo']);
 
 var llama = AnimalCreator('Zeny', 'llama', 'I got a hump!', ['hump','hump','hump']);
+
+var ostrich = AnimalCreator('Silly');
+
+var jellyFish = AnimalCreator('Slimy');
+
+var dog = AnimalCreator('Skip');
+
 	// console.log(sheep);
 	//       // { username: 'Cloud',
 	//       //  species: 'sheep',
@@ -87,12 +93,12 @@ var llama = AnimalCreator('Zeny', 'llama', 'I got a hump!', ['hump','hump','hump
 
 var addFriend = function(animal1,animal2){
 	animal1.friends.push(animal2);
-	console.log('animal1',animal1)
 	return animal1;
 };
 
 	// ```javascript
 addFriend(sheep, cow);
+addFriend(sheep, llama);
 	//   console.log(sheep);
 	//         // { username: 'Cloud',
 	//         //  species: 'sheep',
@@ -100,8 +106,8 @@ addFriend(sheep, cow);
 	//         //  noises: ['baahhh', 'arrgg', 'chewchewchew'],
 	//         //  friends: [{username: 'Moo', species: 'cow'...}]
 	//         // }
-var threeAnimals = addFriend(sheep, llama);
-console.log('all animals',threeAnimals);
+// var threeAnimals = addFriend(sheep, llama);
+// console.log('all animals',threeAnimals);
 	//   console.log(sheep);
 	//         // { username: 'Cloud',
 	//         //  species: 'sheep',
@@ -111,11 +117,24 @@ console.log('all animals',threeAnimals);
 	//         // }
 	// ```
 
-
-
 // 5. Change your `addFriend` function
 	//	to only add the username of the friend,
 	//	not the whole object.
+
+var addFriend = function(animal1,animal2){
+	var animalTwoUserName = animal2.username;
+	animal1.friends.push(animalTwoUserName);
+	return animal1;
+};
+
+addFriend(sheep, ostrich);
+addFriend(cow, jellyFish);
+addFriend(llama, dog);
+addFriend(sheep, cow);
+addFriend(sheep, llama);
+addFriend(cow, llama);
+addFriend(sheep, jellyFish);
+
 
 	// ```javascript
 	//   addFriend(sheep, cow);
@@ -136,22 +155,63 @@ console.log('all animals',threeAnimals);
 	//         // }
 	// ```
 
-
-
 // 6. Create a `myFarm` collection of at least 3 animal objects.
 	//	Give them some friends using `addFriend`, too!
+
+var myFarm = [];
+myFarm[0] = sheep;
+myFarm[1] = cow;
+myFarm[2] = llama;
+
+var addFriend = function(animal1,animal2){
+	var animalTwoUserName = animal2.username;
+	animal1.friends.push(animalTwoUserName);
+	return animal1;
+};
+
+// var one = addFriend(sheep,ostrich);
+// console.log('1', one);
+// var two = addFriend(cow,jellyFish);
+// console.log('2',two);
+// var three = addFriend(llama,dog);
+// console.log('3',three);
 
 	// ```javascript
 	// console.log(myFarm) //[{username: 'Cloud'...},{username: 'Zeny'...},{username: 'CottonBall'...}]
 	// ```
-
-
 
 // 7. Create a function, `addMatchesArray`,
 	//	that takes a farm (array of animal objects) and
 	//	adds a new property to each animal object called `matches`
 	//		that is an empty array.
 	//	Hint: you will need a loop.
+
+var myFarm = [];
+myFarm[0] = sheep;
+myFarm[1] = cow;
+myFarm[2] = llama;
+
+var AnimalCreator = function(username, species, tagline, noises) {
+	var animal = {};
+		animal.username = username;
+		animal.species = species;
+		animal.tagline = tagline;
+	    animal.noises = noises;
+		animal.friends = [];
+		// animal.matches = [];
+	return animal;
+};
+
+var addMatchesArray = function(myFarm){
+	//add a new property to each animal object called 'matches' that is an empty array
+	for(var i = 0; i < myFarm.length; i++){
+		myFarm[i].matches = [];
+	}
+	return myFarm;
+};
+
+addMatchesArray(myFarm);
+
 
 	// ```javascript
 	// addMatchesArray(myFarm);
@@ -167,13 +227,23 @@ console.log('all animals',threeAnimals);
 
 
 // 8. Create a function, `giveMatches`,
-	//	that takes a farm collection (aka an array of animal objects)
+	//	that takes a farm (aka an array of animal objects)
 	//		that already has a matches property.
 	//	It selects a name from the `friends` array and
 	//		adds it to the `matches` array.
 	//	You can choose how the selection is made
 	//		(random, the first element, etc).
 	//	Make sure all your animal objects have friends.
+
+var giveMatches = function(myFarm){
+	for(var i = 0; i < myFarm.length; i++){
+		myFarm[i].matches.push(myFarm[i].friends);
+	}
+	console.log('myFarm',myFarm);
+	return myFarm;
+};
+
+// console.log('giveMatches',giveMatches(myFarm));
 
 	// ```javascript
 	// giveMatches(myFarm);
