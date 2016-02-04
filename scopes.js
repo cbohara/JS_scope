@@ -330,32 +330,15 @@ func1();
   //  In this case, it is a function.
   // We can then invoke that function with the open and closed parens ().
 
+
 // Let's put that pattern to use!
 
 // 20. Create an empty array called closureFuncs.
+
 // 21. Create a new for loop.
+
 // 22. Let's create a new iSaver function for every even i in the array,
   // and push that function into closureFuncs.
-
-var closureFuncs = [];
-
-var iSaverEven = function(evenIndex, value) {
-  return function() {
-    console.log('inside of our closure scope, i is still:',evenIndex,'val is:',value);
-    closureFuncs[i].iSaverEven;
-  };
-}
-
-var testArr = [1,2,3,4];
-
-for (var i = 0; i < testArr.length; i++) {
-  if(i % 2 === 0) {
-    var even = iSaverEven(i, testArr[i]);
-  }
-}
-
-even();
-console.log('closureFuncs',closureFuncs);
 
 // 23. Then, once you're done with the entire for loop,
   // log what the value of i is outside the for loop.
@@ -368,21 +351,11 @@ console.log('closureFuncs',closureFuncs);
   // 'inside of our closure scope, i is still: 0, val is: 1'
   // 'inside of our closure scope, i is still: 2, val is: 3'
 
-
-// What you should see logged out is
-  // 'inside of our closure scope, i is still: 0, val is: 1'
-  // 'inside of our closure scope, i is still: 2, val is: 3'
-
-// 25. Try doing this again with a longer array!
-  //   Or try building out different logic for for what we save
-  //     into our closure scopes.
-  //   Generally, do what you can to get comfortable with saving values for
-  //    future access into closure scopes.
-
 // Extra Credit:
   // Using the module pattern, create a toaster.
   // The cool part about this is that you get to decide what the user should be able to access/modify, and what we'll keep private from them.
   var toaster = function() {
+
     //some private properties here
     return {
       // public properties and methods here.
@@ -413,3 +386,29 @@ console.log('closureFuncs',closureFuncs);
     // reunionGreeter will let us modularize our code to the point we can do this.
     //  reunionGreeter takes in a last name, and
     //  returns a function that greets people with the first name they pass in.
+
+var reunionGreeter = function(lastName){
+  var nameMaker = function(firstName){
+    return 'Welcome to the party, ' + firstName + ' ' + lastName;
+  };
+  return nameMaker;
+};
+
+var reunionGreeterThinklestein = reunionGreeter('Thinklestein');
+reunionGreeterThinklestein('Billy');
+reunionGreeterThinklestein('Sally');
+
+
+
+var reunionGreeterSmith = reunionGreeter('Smith');
+reunionGreeterSmith('Bob');
+reunionGreeterSmith('Rob');
+
+
+
+
+
+
+
+
+
